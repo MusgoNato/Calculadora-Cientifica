@@ -22,37 +22,23 @@ VERIFICAR A IMPRESSAO DA PRECISAO E SE O CALCULO ESTA CORRETO MESMO!*/
 int main(int argc, char *argv[])
 {
     ENTRADA_USUARIO **input;
-    int i = 0;
-    int cont_valores = 0;
+    char **linhas_entrada;
+    int cont_linhas = 0;
+
+    /*Alocacao inicial para os valores*/
+    linhas_entrada = (char **)malloc(TAM_LINHA * sizeof(char *));
+    input = (ENTRADA_USUARIO **)malloc(sizeof(ENTRADA_USUARIO *));
 
     argc = argc;
     argv = argv;
-
-
-    /*Alocacao para meu vetor de ponteiros*/
-    input = (ENTRADA_USUARIO **)malloc(sizeof(ENTRADA_USUARIO *));
-
-    printf("Insira os valores\n");
-    while(1)
-    {
-        /*Leitura da entrada padrao*/
-        fscanf(stdin, "%d %lf %lf %lf", &input[i]->id_funcao, &input[i]->x, &input[i]->precisao, &input[i]->n_raiz);
-        if(input[i]->id_funcao == 0)
-        {
-            break;
-        }
-        i++;
-        cont_valores++;
-
-        /*Alocacao para cada ponteiro*/
-        input[i] = (ENTRADA_USUARIO *)malloc(sizeof(ENTRADA_USUARIO));
-    }
     
-    /*Impressao*/
-    for(i = 0; i < cont_valores; i++)
-    {
-        printf("%d linha: ID: |%d| X: |%f| PRECISAO: |%f| N_RAIZ: |%f|\n", i, input[i]->id_funcao, input[i]->x, input[i]->precisao, input[i]->n_raiz);
-    }
+    /*Chamada da funcao para pegar os valores do usuario*/
+    Obter_entrada_usuario(linhas_entrada, &cont_linhas);
+
+    /*Chamada da funcao para converter os dados de string para os tipos correspondentes*/
+    Converte_dados(linhas_entrada, input, &cont_linhas);
+
+    
 
     return 0;
 }

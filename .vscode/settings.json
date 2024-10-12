@@ -5,6 +5,8 @@
         "math.h": "c",
         "cmath": "c",
         "*.tcc": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "funcoes.h": "c"
     }
 }

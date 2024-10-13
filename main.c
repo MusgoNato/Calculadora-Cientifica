@@ -38,6 +38,8 @@ int main(int argc, char *argv[])
     /*Chamada da funcao para converter os dados de string para os tipos correspondentes*/
     Converte_dados(linhas_entrada, input, &cont_linhas);
 
+    /*Chamda da funcao para exibir os resultados das funcoes*/
+    Exibe_Resultados_Funcoes(input, &cont_linhas);
     
 
     return 0;

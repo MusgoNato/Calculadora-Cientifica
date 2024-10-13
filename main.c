@@ -16,8 +16,6 @@
 # include <stdlib.h>
 # include "funcoes.h"
 
-/*PENDENTE:
-VERIFICAR A IMPRESSAO DA PRECISAO E SE O CALCULO ESTA CORRETO MESMO!*/
 
 int main(int argc, char *argv[])
 {
@@ -27,13 +25,15 @@ int main(int argc, char *argv[])
 
     /*Alocacao inicial para os valores*/
     linhas_entrada = (char **)malloc(TAM_LINHA * sizeof(char *));
-    input = (ENTRADA_USUARIO **)malloc(sizeof(ENTRADA_USUARIO *));
 
     argc = argc;
     argv = argv;
     
     /*Chamada da funcao para pegar os valores do usuario*/
     Obter_entrada_usuario(linhas_entrada, &cont_linhas);
+
+    /*Aloco espaco suficiente para meu array de ponteiros, de acordo com as linhas lidas*/
+    input = (ENTRADA_USUARIO **)malloc(cont_linhas * sizeof(ENTRADA_USUARIO *));
 
     /*Chamada da funcao para converter os dados de string para os tipos correspondentes*/
     Converte_dados(linhas_entrada, input, &cont_linhas);

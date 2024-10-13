@@ -7,6 +7,8 @@
         "*.tcc": "c",
         "stdio.h": "c",
         "stdlib.h": "c",
-        "funcoes.h": "c"
+        "funcoes.h": "c",
+        "typeinfo": "c",
+        "cctype": "c"
     }
 }

@@ -2,6 +2,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <string.h>
+# include <windows.h>
 # include "funcoes.h"
 
 /*Calculo do seno()*/
@@ -61,6 +62,7 @@ void Obter_entrada_usuario(char **linhas_entrada, int *cont_linhas)
         i++;
         *cont_linhas += 1;
     }
+    printf("Contador Obter: %d\n", *cont_linhas);
 
 }
 
@@ -77,42 +79,34 @@ void Converte_dados(char **linhas_entrada, ENTRADA_USUARIO **input, int *cont_li
         input[i] = (ENTRADA_USUARIO *)malloc(sizeof(ENTRADA_USUARIO));
     }
 
-    /*Conversao dos dados*/
+    /*Converte meus dados*/
     for(i = 0; i < *cont_linhas; i++)
     {
-        /*Copio minha string original para uma copia*/
+        /*Copio minha string, devido ao strtok "destruir" minha string original*/
         strcpy(string_aux, linhas_entrada[i]);
-        
-        /*ID*/
+
+        /*ID da Funcao*/
         substring = strtok(string_aux, " ");
         input[i]->id_funcao = atoi(substring);
-        printf("ID: %d\n", input[i]->id_funcao);
 
-        /*RAIO*/
+        /*X em radianos*/
         substring = strtok(NULL, " ");
         input[i]->x = atof(substring);
-        printf("RAIO: %f\n", input[i]->x);
 
-        /*PRECISAO*/
+        /*Precisao das cadas decimais*/
         substring = strtok(NULL, " ");
         input[i]->precisao = atof(substring);
-        printf("PRECISAO: %f\n", input[i]->precisao);
 
-        /*N DA RAIZ*/
-        if(linhas_entrada[i][0] == '4')
-        {
-            substring = strtok(NULL, " ");
-            input[i]->n_raiz = atoi(substring);
-            printf("N_RAIZ: %f\n", input[i]->x);
-        }
+        /*Numero do n para raiz*/
+        substring = strtok(NULL, " ");
+        input[i]->n_raiz = atoi(substring);
 
     }
 
-    /*
-    Impressao caso for preciso depois
+    /*Impressao caso for preciso depois*/
     for(i = 0; i < *cont_linhas; i++)
     {
-        printf("ID: |%d| RAIO: |%f| PRECISAO: |%f| N_RAIZ: |%d|\n", input[i]->id_funcao, input[i]->x, input[i]->precisao, input[i]->n_raiz);
+        printf("ID: |%d| X: |%f| PRECISAO: |%f| N_RAIZ: |%d|\n", input[i]->id_funcao, input[i]->x, input[i]->precisao, input[i]->n_raiz);
     }
-    */
+    
 }

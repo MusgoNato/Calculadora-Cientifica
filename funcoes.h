@@ -30,6 +30,8 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **, int *);
 /*Calcula Fatorial*/
 int Fat(int);
 
+double Logaritmo_Natural(double, int);
+
 /*Alocacao da entrada do usuario*/
 void Obter_entrada_usuario(char **, int *);
 

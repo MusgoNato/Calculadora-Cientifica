@@ -31,7 +31,6 @@ void Converte_dados(char **linhas_entrada, ENTRADA_USUARIO **input, int *cont_li
         /*X em radianos*/
         substring = strtok(NULL, " ");
         input[i]->x = atof(substring);
-        input[i]->x = input[i]->x * M_PI/180;
 
         /*Precisao das cadas decimais*/
         substring = strtok(NULL, " ");
@@ -50,6 +49,8 @@ double Cosseno(double x, int precisao)
     int n = 0;
     double termo = 1.0;
     double resultado_cosseno = 1.0;
+
+    x = x * M_PI/180;
 
     for(n = 1; n <= precisao; n++)
     {
@@ -84,7 +85,7 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
 
             case LOGARITMO_NATURAL:
             {
-                printf("Logaritmo Natural: \n");
+                printf("Logaritmo Natural: %.*f\n", input[i]->precisao, Logaritmo_Natural(input[i]->x, input[i]->precisao));
                 break;
             }
         }
@@ -106,13 +107,20 @@ int Fat(int valor_num)
     }
 }
 
-/*Calculo do Logaritmo Natural
-double Logaritmo_Natura(double x, int precisao)
+/*Calculo do Logaritmo Natural*/
+double Logaritmo_Natural(double x, int precisao)
 {
-    int n = 0;
+    /*int n = 0;
+    double termos = 0.0;
+    double resultado_ln = 0.0;*/    
+
+    precisao = precisao;
+
+    x = (x - 1)/(x + 1);
+    printf("VALOR DE X: %f\n", x);
 
     return 0.0;
-}*/
+}
 
 /*Funcao para alocar a entrada padrao do usuario*/
 void Obter_entrada_usuario(char **linhas_entrada, int *cont_linhas)
@@ -147,6 +155,8 @@ double Seno(double x, int precisao)
     int n = 0;
     double resultado_seno = 0.0;
     double termo = 0.0;
+
+    x = x * M_PI/180;
 
     /*Calculo*/
     while(n < precisao)

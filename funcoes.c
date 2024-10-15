@@ -61,10 +61,26 @@ double Cosseno(double x, int precisao)
     return resultado_cosseno;
 }
 
+double Corrige_arredondamento(double x, int precisao)
+{
+    double aux;
+    double truncar;
+
+    /*Calculo para determinar o fator 10^precisao*/
+    aux = pow(10, precisao);
+
+    /*Trunca, depois devolve ao lugar */
+    truncar = trunc(x * aux)/aux;
+
+    return truncar;
+
+}
+
 /*Exibe o resultado das funcoes a serem chamadas*/
 void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
 {
     int i = 0;
+    double valor_sem_arredondamento = 0.0;
 
     /*Loop para chamar as funcoes de acordo com o valor passado pela entrada padrao e apresentar seu resultado*/
     while(i < *cont_linhas)
@@ -73,19 +89,25 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
         {
             case SENO:
             {
-                printf("SENO: %.*f\n", input[i]->precisao, Seno(input[i]->x, input[i]->precisao));
+                /*A chamada da funcao poderia ter sido feita dentro do printf. Porem, por organizacao existe a variavel 'valor_sem_arredondamento'
+                para guardar o valor retornado pela funcao que corrige o valor para ser usado pela funcao printf()*/
+                valor_sem_arredondamento = Corrige_arredondamento(Seno(input[i]->x, input[i]->precisao), input[i]->precisao);
+
+                printf("SENO: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
 
             case COS:
             {
-                printf("COSSENO: %.*f\n", input[i]->precisao, Cosseno(input[i]->x, input[i]->precisao));
+                valor_sem_arredondamento = Corrige_arredondamento(Cosseno(input[i]->x, input[i]->precisao), input[i]->precisao);
+                printf("COSSENO: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
 
             case LOGARITMO_NATURAL:
             {
-                printf("Logaritmo Natural: %.*f\n", input[i]->precisao, Logaritmo_Natural(input[i]->x, input[i]->precisao));
+                valor_sem_arredondamento = Corrige_arredondamento(Logaritmo_Natural(input[i]->x, input[i]->precisao), input[i]->precisao);
+                printf("Logaritmo Natural: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
         }
@@ -110,16 +132,26 @@ int Fat(int valor_num)
 /*Calculo do Logaritmo Natural*/
 double Logaritmo_Natural(double x, int precisao)
 {
-    /*int n = 0;
-    double termos = 0.0;
-    double resultado_ln = 0.0;*/    
+    int n = 1;
+    double termos = 0.0;   
+    double resultado = 0.0;
 
-    precisao = precisao;
-
+    /*Transformacao para o valor de x, devido a limitacao de x de -1 e 1*/
     x = (x - 1)/(x + 1);
-    printf("VALOR DE X: %f\n", x);
 
-    return 0.0;
+    do
+    {
+        /*Pega cada termo da serie*/
+        termos = pow(x, 2 * n - 1)/(2 * n - 1);
+
+        /*Verifica se o erro esta correto*/
+        /*Continuar por aqui*/
+
+        resultado += termos;
+        n++;
+    }while(1);
+
+    return 2 * resultado;
 }
 
 /*Funcao para alocar a entrada padrao do usuario*/

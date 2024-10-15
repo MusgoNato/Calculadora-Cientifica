@@ -37,3 +37,6 @@ void Obter_entrada_usuario(char **, int *);
 
 /*Calcula seno*/
 double Seno(double, int);
+
+/*Corrige o valor, para imprimir corretamente sem o arredondamento da funcao printf()*/
+double Corrige_arredondamento(double, int);

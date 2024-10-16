@@ -139,6 +139,8 @@ double Logaritmo_Natural(double x, int precisao)
     /*Transformacao para o valor de x, devido a limitacao de x de -1 e 1*/
     x = (x - 1)/(x + 1);
 
+    precisao = precisao;
+
     do
     {
         /*Pega cada termo da serie*/

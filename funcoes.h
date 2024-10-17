@@ -18,11 +18,11 @@ enum
     SEN_H
 };
 
-/*Calcula Cosseno*/
-double Cosseno(double, int);
-
 /*Transfere os dados pegos da entrada do usuario para a struct responsavel pelo armazenamento com seus tipos corretos*/
 void Converte_dados(char **, ENTRADA_USUARIO **, int *);
+
+/*Calcula Cosseno*/
+double Cosseno(double, int);
 
 /*Rsponsavel por exibiro resultado das funcoes que estao presentes no programa*/
 void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **, int *);
@@ -34,6 +34,9 @@ double Logaritmo_Natural(double, int);
 
 /*Alocacao da entrada do usuario*/
 void Obter_entrada_usuario(char **, int *);
+
+/*Responsavel pelo calculo da raiz*/
+double Raiz(double, int, int);
 
 /*Calcula seno*/
 double Seno(double, int);

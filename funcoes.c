@@ -43,37 +43,39 @@ void Converte_dados(char **linhas_entrada, ENTRADA_USUARIO **input, int *cont_li
     
 }
 
-/*Calculo do cosseno*/
-double Cosseno(double x, int precisao)
-{
-    int n = 0;
-    double termo = 1.0;
-    double resultado_cosseno = 1.0;
-
-    x = x * M_PI/180;
-
-    for(n = 1; n <= precisao; n++)
-    {
-        termo *= -x * x/(2 * n * (2 * n - 1));
-        resultado_cosseno += termo;
-    }
-
-    return resultado_cosseno;
-}
-
 double Corrige_arredondamento(double x, int precisao)
 {
     double aux;
-    double truncar;
+    double valor_truncado;
 
     /*Calculo para determinar o fator 10^precisao*/
     aux = pow(10, precisao);
 
-    /*Trunca, depois devolve ao lugar */
-    truncar = trunc(x * aux)/aux;
+    /*Trunca, depois devolve ao lugar, mantendo a precisao desejada sem arredondamentos*/
+    valor_truncado = trunc(x * aux)/aux;
 
-    return truncar;
+    return valor_truncado;
 
+}
+
+/*Calculo do cosseno*/
+double Cosseno(double x, int precisao)
+{
+    int n = 0;
+    double termo = 1;
+    double resultado_cosseno = 1;
+
+    x = x * M_PI/180;
+
+    /*Loop para o calculo do cosseo, caso o valor absoluto do termo ultrapasse a quantidade de precisao desejada, sai do loop*/
+    while(fabs(termo) > pow(10, -precisao))
+    {
+        n++;
+        termo = -termo * x * x/((2 * n - 1) * 2 * n);
+        resultado_cosseno += termo;
+    }
+
+    return resultado_cosseno;
 }
 
 /*Exibe o resultado das funcoes a serem chamadas*/
@@ -92,7 +94,6 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
                 /*A chamada da funcao poderia ter sido feita dentro do printf. Porem, por organizacao existe a variavel 'valor_sem_arredondamento'
                 para guardar o valor retornado pela funcao que corrige o valor para ser usado pela funcao printf()*/
                 valor_sem_arredondamento = Corrige_arredondamento(Seno(input[i]->x, input[i]->precisao), input[i]->precisao);
-
                 printf("SENO: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
@@ -108,6 +109,14 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
             {
                 valor_sem_arredondamento = Corrige_arredondamento(Logaritmo_Natural(input[i]->x, input[i]->precisao), input[i]->precisao);
                 printf("Logaritmo Natural: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
+                break;
+            }
+
+            case RAIZ:
+            {
+                printf("Raiz antes da funcao: %.*f\n", input[i]->precisao, Raiz(input[i]->x, input[i]->n_raiz, input[i]->precisao));
+                valor_sem_arredondamento = Corrige_arredondamento(Raiz(input[i]->x, input[i]->n_raiz, input[i]->precisao), input[i]->precisao);
+                printf("Raiz: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
         }
@@ -136,22 +145,21 @@ double Logaritmo_Natural(double x, int precisao)
     double termos = 0.0;   
     double resultado = 0.0;
 
-    /*Transformacao para o valor de x, devido a limitacao de x de -1 e 1*/
+    /*Transformando o valor de x, devido a limitacao de x de -1 e 1. Pra evitar a criacao de mais uma variavel,
+    somente foi feita a atribuicao para o proprio x, pois seguindo a formula seria y = (x - 1)/(x + 1)*/
     x = (x - 1)/(x + 1);
+    resultado = x;
 
-    precisao = precisao;
-
+    /*Calculo do Logaritmo Natural*/
     do
     {
-        /*Pega cada termo da serie*/
-        termos = pow(x, 2 * n - 1)/(2 * n - 1);
-
-        /*Verifica se o erro esta correto*/
-        /*Continuar por aqui*/
-
-        resultado += termos;
         n++;
-    }while(1);
+        termos = pow(x, 2 * n - 1)/(2 * n - 1);
+        resultado += termos;    
+
+    /*Verifico se o valor absoluto do termo que foi calculado ultrapassa o valor da precisao desejada,
+    obtendo o calculo final correto do Logaritmo*/    
+    }while(fabs(termos) > pow(10, -precisao));
 
     return 2 * resultado;
 }
@@ -180,6 +188,15 @@ void Obter_entrada_usuario(char **linhas_entrada, int *cont_linhas)
         *cont_linhas += 1;
     }
 
+}
+
+/*Calculo da Raiz*/
+double Raiz(double x, int n_raiz, int precisao)
+{
+    x = x;
+    n_raiz = n_raiz;
+    precisao = precisao;
+    return 0.0;
 }
 
 

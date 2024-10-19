@@ -193,9 +193,41 @@ void Obter_entrada_usuario(char **linhas_entrada, int *cont_linhas)
 /*Calculo da Raiz*/
 double Raiz(double x, int n_raiz, int precisao)
 {
+    double f_x0;
+    double x0;
+    double precisao_desejada;
+    double novo_chute;
+
     x = x;
     n_raiz = n_raiz;
-    precisao = precisao;
+
+    /*Definicao do valor do chute inicial*/
+    if(x > 2)
+    {
+        x0 = 1.5;
+    }
+    else
+    {
+        x0 = 1.5;
+    }
+
+    precisao_desejada = pow(10, -precisao);
+    printf("Valor da precisao desejada: %f\n", precisao_desejada);
+
+    f_x0 = pow(x0, n_raiz) - x;
+    printf("F(X): %f\n", f_x0);
+
+    /*while(f_x0 > precisao_desejada)
+    {   
+        if(f_x0 < precisao_desejada)
+        {
+            break;
+        }
+    }*/
+
+    novo_chute = x0 - (f_x0/(2 * x0));
+    printf("Valor do novo chute: %f\n", novo_chute);
+
     return 0.0;
 }
 

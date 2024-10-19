@@ -3,7 +3,7 @@
     Descrição: [...]
     Programador: [Hugo Josue Lema Das Neves] 
     RGM: [47159] 
-    Data da última modificação: 09/10/2024
+    Data da última modificação: 19/10/2024
 */
 
 
@@ -15,7 +15,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "funcoes.h"
-
 
 int main(int argc, char *argv[])
 {

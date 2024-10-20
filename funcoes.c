@@ -1,9 +1,9 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include <string.h>
-# include <windows.h>
-# include "funcoes.h"
+# include <math.h> /*fabs(), pow(), trunc(), M_E, M_PI*/
+# include <stdio.h> /*fgets(), printf()*/
+# include <stdlib.h> /*atoi(), malloc()*/
+# include <string.h> /*strcpy(), strtok()*/
+# include "funcoes.h" /*Converte_dados(), Corrige_arredondamento(), Cosseno(), Euler(), Exibe_Resultados_Funcoes(), Fat(), Logaritmo_Natural(),
+Obter_entrada_usuario(), Raiz(), Seno(), Sen_Hiperbolico(), COS, E_EULER, LOGARITMO_NATURAL, RAIZ, SEN_H, SENO, TAM_LINHA*/
 
 /*Funcao para converter os dados de string para os tipos correspondentes*/
 void Converte_dados(char **linhas_entrada, ENTRADA_USUARIO **input, int *cont_linhas)
@@ -43,6 +43,7 @@ void Converte_dados(char **linhas_entrada, ENTRADA_USUARIO **input, int *cont_li
     
 }
 
+/*Funcao para corrigir o arredondamento da funcao printf*/
 double Corrige_arredondamento(double x, int precisao)
 {
     double aux;
@@ -131,31 +132,29 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
             case LOGARITMO_NATURAL:
             {
                 valor_sem_arredondamento = Corrige_arredondamento(Logaritmo_Natural(input[i]->x, input[i]->precisao), input[i]->precisao);
-                printf("Logaritmo Natural: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
+                printf("LOGARITMO NATURAL: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
 
             case RAIZ:
             {
                 valor_sem_arredondamento = Corrige_arredondamento(Raiz(input[i]->x, input[i]->n_raiz, input[i]->precisao), input[i]->precisao);
-                printf("Raiz: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
+                printf("RAIZ: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
 
             case E_EULER:
             {
-                printf("Valor Euler antes da funcao: %f\n", Euler(input[i]->x, input[i]->precisao));
                 valor_sem_arredondamento = Corrige_arredondamento(Euler(input[i]->x, input[i]->precisao), input[i]->precisao);
-                printf("Euler: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
+                printf("EXPONENCIAL DE EULER: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
             }
 
             case SEN_H:
             {
-                /*printf("Valor do Seno_H antes da funcao: %f\n", Euler(input[i]->x, input[i]->precisao));
-                valor_sem_arredondamento = Corrige_arredondamento(Euler(input[i]->x, input[i]->precisao), input[i]->precisao);
+                valor_sem_arredondamento = Corrige_arredondamento(Sen_Hiperbolico(input[i]->x, input[i]->precisao), input[i]->precisao);
                 printf("SENO_H: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
-                break;*/
+                break;
             }
         }
 
@@ -290,4 +289,27 @@ double Seno(double x, int precisao)
     }
 
     return resultado_seno;
+}
+
+/*Calcula Seno hiperbolico*/
+double Sen_Hiperbolico(double x, int precisao)
+{   
+    double resultado_senh = x;
+    double termo = x;
+    double precisao_desejada;
+    int n = 1;
+
+    precisao_desejada = pow(10, -precisao);
+
+    /*Verificacao de acordo com a precisao*/
+    while(fabs(termo) > precisao_desejada)
+    {
+        n++;
+
+        /*Calculo para o seno hiperbolico*/
+        termo = termo * pow(x, 2)/((2 * n - 1) * (2 * n - 2));
+        resultado_senh += termo;
+    } 
+
+    return resultado_senh;
 }

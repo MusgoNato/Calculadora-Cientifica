@@ -9,6 +9,7 @@
         "stdlib.h": "c",
         "funcoes.h": "c",
         "typeinfo": "c",
-        "cctype": "c"
+        "cctype": "c",
+        "string.h": "c"
     }
 }

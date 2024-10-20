@@ -1,5 +1,7 @@
+/*Constantes*/
 # define TAM_LINHA 10000
 
+/*Registro responsavel pelo armazenamento dos dados do usuario*/
 typedef struct _entrada_user
 {
     int id_funcao;
@@ -8,6 +10,7 @@ typedef struct _entrada_user
     int n_raiz;
 }ENTRADA_USUARIO;
 
+/*Registro responsavel pela enumeracao das funcoes*/
 enum
 {
     SENO = 1,
@@ -18,30 +21,35 @@ enum
     SEN_H
 };
 
-/*Transfere os dados pegos da entrada do usuario para a struct responsavel pelo armazenamento com seus tipos corretos*/
+/*Responsavel por transferir os dados pegos da entrada do usuario para a struct responsavel pelo armazenamento com seus tipos corretos*/
 void Converte_dados(char **, ENTRADA_USUARIO **, int *);
 
-/*Calcula Cosseno*/
+/*Responsavel por calcular o Cosseno*/
 double Cosseno(double, int);
 
+/*Responsavel pelo calculo exponencial de Euler*/
 double Euler(double, int);
 
-/*Rsponsavel por exibiro resultado das funcoes que estao presentes no programa*/
+/*Responsavel por exibir o resultado das funcoes que estao presentes no programa*/
 void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **, int *);
 
-/*Calcula Fatorial*/
+/*Responsavel pelo calculo do fatorial*/
 int Fat(int);
 
+/*Responsavel pelo calculo do Logaritmo Natural*/
 double Logaritmo_Natural(double, int);
 
-/*Alocacao da entrada do usuario*/
+/*Responsavel pela alocacao da entrada do usuario*/
 void Obter_entrada_usuario(char **, int *);
 
 /*Responsavel pelo calculo da raiz*/
 double Raiz(double, int, int);
 
-/*Calcula seno*/
+/*Responsavel pelo calculo do seno*/
 double Seno(double, int);
 
-/*Corrige o valor, para imprimir corretamente sem o arredondamento da funcao printf()*/
+/*Responsavel pelo calculo do seno Hiperbolico*/
+double Sen_Hiperbolico(double, int);
+
+/*Responsavel por corrigir o valor para imprimir corretamente sem o arredondamento da funcao printf()*/
 double Corrige_arredondamento(double, int);

@@ -24,6 +24,8 @@ void Converte_dados(char **, ENTRADA_USUARIO **, int *);
 /*Calcula Cosseno*/
 double Cosseno(double, int);
 
+double Euler(double, int);
+
 /*Rsponsavel por exibiro resultado das funcoes que estao presentes no programa*/
 void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **, int *);
 

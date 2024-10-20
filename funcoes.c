@@ -78,6 +78,29 @@ double Cosseno(double x, int precisao)
     return resultado_cosseno;
 }
 
+/*Calculo para funcao de Euler*/
+double Euler(double x, int precisao)
+{
+    double n = 1;
+    double termo = 1.0;
+    double resultado_euler = 1.0;
+    double precisao_desejada;
+
+    /*Calculo minha precisao desejada*/
+    precisao_desejada = pow(10, -precisao);
+
+    /*Verificacao caso o termo a ser calculado ultrapasse a precisao, assim sendo o valor é calculado corretamente*/
+    while(fabs(termo) > precisao_desejada)
+    {        
+        termo *= x/n;
+        resultado_euler += termo;
+        n++;
+    }
+
+    return resultado_euler;
+    
+}
+
 /*Exibe o resultado das funcoes a serem chamadas*/
 void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
 {
@@ -114,10 +137,25 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
 
             case RAIZ:
             {
-                printf("Raiz antes da funcao: %.*f\n", input[i]->precisao, Raiz(input[i]->x, input[i]->n_raiz, input[i]->precisao));
                 valor_sem_arredondamento = Corrige_arredondamento(Raiz(input[i]->x, input[i]->n_raiz, input[i]->precisao), input[i]->precisao);
                 printf("Raiz: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
                 break;
+            }
+
+            case E_EULER:
+            {
+                printf("Valor Euler antes da funcao: %f\n", Euler(input[i]->x, input[i]->precisao));
+                valor_sem_arredondamento = Corrige_arredondamento(Euler(input[i]->x, input[i]->precisao), input[i]->precisao);
+                printf("Euler: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
+                break;
+            }
+
+            case SEN_H:
+            {
+                /*printf("Valor do Seno_H antes da funcao: %f\n", Euler(input[i]->x, input[i]->precisao));
+                valor_sem_arredondamento = Corrige_arredondamento(Euler(input[i]->x, input[i]->precisao), input[i]->precisao);
+                printf("SENO_H: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
+                break;*/
             }
         }
 
@@ -193,42 +231,44 @@ void Obter_entrada_usuario(char **linhas_entrada, int *cont_linhas)
 /*Calculo da Raiz*/
 double Raiz(double x, int n_raiz, int precisao)
 {
-    double f_x0;
+    double f_x;
     double x0;
     double precisao_desejada;
     double novo_chute;
 
-    x = x;
-    n_raiz = n_raiz;
-
-    /*Definicao do valor do chute inicial*/
+    /*Definicao do chute inicial*/
     if(x > 2)
     {
-        x0 = 1.5;
+        x0 = 3;
     }
     else
     {
-        x0 = 1.5;
+        x0 = 2.1;
     }
 
     precisao_desejada = pow(10, -precisao);
-    printf("Valor da precisao desejada: %f\n", precisao_desejada);
 
-    f_x0 = pow(x0, n_raiz) - x;
-    printf("F(X): %f\n", f_x0);
+    do
+    {
+        /*Calculo o valor do F(x) com meu chute inicial*/
+        f_x = pow(x0, n_raiz) - x;
 
-    /*while(f_x0 > precisao_desejada)
-    {   
-        if(f_x0 < precisao_desejada)
+        /*Calculo um novo chute, utilizando o resultado da minha variavel f_x anterior*/
+        novo_chute = x0 - (f_x/(n_raiz * pow(x0, n_raiz - 1)));
+
+        /*Verificacao para a saida do loop, quando a diferenca dos chutes for menor que a precisao desejada, o resultado foi alcancado*/
+        if(fabs(novo_chute - x0) < precisao_desejada)
         {
             break;
-        }
-    }*/
+        }     
 
-    novo_chute = x0 - (f_x0/(2 * x0));
-    printf("Valor do novo chute: %f\n", novo_chute);
+        /*Fazendo isso, me proporciona na variavel f_x um novo chute, usando o ultimo chute a ser calculado*/
+        x0 = novo_chute;
 
-    return 0.0;
+    }while(1);
+
+    /*Retorno do valor da raiz*/
+    return novo_chute;
 }
 
 

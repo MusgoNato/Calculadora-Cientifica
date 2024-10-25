@@ -3,7 +3,7 @@
 # include <stdlib.h> /*atoi(), malloc()*/
 # include <string.h> /*strcpy(), strtok()*/
 # include "funcoes.h" /*Converte_dados(), Corrige_arredondamento(), Cosseno(), Euler(), Exibe_Resultados_Funcoes(), Fat(), Logaritmo_Natural(),
-Obter_entrada_usuario(), Raiz(), Seno(), Sen_Hiperbolico(), COS, E_EULER, LOGARITMO_NATURAL, RAIZ, SEN_H, SENO, TAM_LINHA*/
+Obter_entrada_usuario(), Raiz(), Seno(), Sen_Hiperbolico(), COS, EXP_EULER, LOGARITMO_NATURAL, RAIZ, SEN_H, SENO, TAM_LINHA*/
 
 /*Funcao para converter os dados de string para os tipos correspondentes*/
 void Converte_dados(char **linhas_entrada, ENTRADA_USUARIO **input, int *cont_linhas)
@@ -52,7 +52,7 @@ double Corrige_arredondamento(double x, int precisao)
     /*Calculo para determinar o fator 10^precisao*/
     aux = pow(10, precisao);
 
-    /*Trunca, depois devolve ao lugar, mantendo a precisao desejada sem arredondamentos*/
+    /*Trunca o valor, evitando o arredondamento na impressao*/
     valor_truncado = trunc(x * aux)/aux;
 
     return valor_truncado;
@@ -68,7 +68,7 @@ double Cosseno(double x, int precisao)
 
     x = x * M_PI/180;
 
-    /*Loop para o calculo do cosseo, caso o valor absoluto do termo ultrapasse a quantidade de precisao desejada, sai do loop*/
+    /*Loop para o calculo do cosseno, caso o valor absoluto do termo ultrapasse a quantidade de precisao desejada, sai do loop*/
     while(fabs(termo) > pow(10, -precisao))
     {
         n++;
@@ -115,7 +115,7 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
         {
             case SENO:
             {
-                /*A chamada da funcao poderia ter sido feita dentro do printf. Porem, por organizacao existe a variavel 'valor_sem_arredondamento'
+                /*As chamadas das funcoes poderia ser feita dentro do printf. Porem, por organizacao existe a variavel 'valor_sem_arredondamento'
                 para guardar o valor retornado pela funcao que corrige o valor para ser usado pela funcao printf()*/
                 valor_sem_arredondamento = Corrige_arredondamento(Seno(input[i]->x, input[i]->precisao), input[i]->precisao);
                 printf("SENO: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
@@ -143,7 +143,7 @@ void Exibe_Resultados_Funcoes(ENTRADA_USUARIO **input, int *cont_linhas)
                 break;
             }
 
-            case E_EULER:
+            case EXP_EULER:
             {
                 valor_sem_arredondamento = Corrige_arredondamento(Euler(input[i]->x, input[i]->precisao), input[i]->precisao);
                 printf("EXPONENCIAL DE EULER: %.*f\n", input[i]->precisao, valor_sem_arredondamento);
@@ -195,7 +195,7 @@ double Logaritmo_Natural(double x, int precisao)
         resultado += termos;    
 
     /*Verifico se o valor absoluto do termo que foi calculado ultrapassa o valor da precisao desejada,
-    obtendo o calculo final correto do Logaritmo*/    
+    obtendo o calculo final do Logaritmo*/    
     }while(fabs(termos) > pow(10, -precisao));
 
     return 2 * resultado;
@@ -206,7 +206,7 @@ void Obter_entrada_usuario(char **linhas_entrada, int *cont_linhas)
 {
     int i = 0;
 
-    printf("Insira os valores\n");
+    printf("Insira os valores abaixo, Ex: 1 5 5.\n");
 
     while(1)
     {
@@ -246,6 +246,13 @@ double Raiz(double x, int n_raiz, int precisao)
     }
 
     precisao_desejada = pow(10, -precisao);
+
+    /*Caso o valor nao seja passado na entrada, recebe 1 para sair do loop, pois caso seja 0,
+    que vem por padrao da entrada, nao saira do loop abaixo*/
+    if(n_raiz == 0)
+    {
+        n_raiz = 1;
+    }
 
     do
     {

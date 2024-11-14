@@ -15,7 +15,7 @@
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - Você instalou a versão mais recente da linguagem `<C>`
-- Você instalou a versão mais recente do ``<GCC>`
+- Você instalou a versão mais recente do `<GCC>`
 - Você tem uma máquina `<Windows / Linux / Mac>`.
 
 ## 🚀 Veja o Projeto

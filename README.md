@@ -29,6 +29,42 @@ Siga estas etapas:
 - LINHA PARA COMPILAÇÃO: gcc main.c -o main.exe funcoes.c -Wall -pedantic -Wextra -Werror
 - LINHA PARA EXECUÇÃO: main.exe
 
+## ℹ️ Funcionamento
+
+Cada função apresentada na calculadora científica segue o comportamento de somas por polinômios de acordo com a série de Taylor.
+
+Explicação de cada valor da linha
+- [ID] [VALOR_DO_X] [PRECISAO_DESEJADA] [EXPOENTE_DA_RAIZ]
+
+ID: 
+- SENO -> 1
+- COSSENO -> 2
+- LOGARITMO_NATURAL -> 3
+- RAIZ -> 4
+- EXPONENCIAL DE EULER -> 5
+- SENO HIPERBOLICO -> 6
+
+VALOR_DO_X:
+
+- Referente ao número em graus do X passado para qualquer função (O valor é corrigido para radianos pelo programa caso seja necessário).
+
+PRECISAO_DESEJADA:
+
+- Valor correspondente a precisão que o usuário quer que o valor seja apresentado na tela. Quanto maior a precisão, mais perto o valor impresso chegará ao valor real do cálculo.
+
+EXPOENTE_DA_RAIZ:
+
+- O valor EXPOENTE_DA_RAIZ somente é passado para o cálculo da função RAIZ. Porém, caso não seja passado o valor, será atribuído 1, mantendo o valor original da função.
+
+Exemplos:
+- 1 2 3
+- 2 3 4
+- 3 4 5
+- 4 4 4 4
+- 0
+
+Você pode inserir quantas linhas quiser no programa, já que a alocação dinâmica presente no código permite esse comportamento, então é possível o cálculo da mesma função em linhas diferentes com valores diferentes. Para encerrar as leituras das linhas, insira em uma nova linha o ID 0.
+
 ## 🤝 Colaboradores
 <table>
     <td align="center">

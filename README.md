@@ -78,7 +78,7 @@ Exemplos:
 
 Você pode inserir quantas linhas quiser no programa, já que a alocação dinâmica presente no código permite esse comportamento, então é possível o cálculo da mesma função em linhas diferentes com valores diferentes. Para encerrar as leituras das linhas, insira em uma nova linha o ID 0.
 
-## 🤝 Colaboradores
+## 🤝 Desenvolvedor
 <table>
     <td align="center">
       <a href="https://github.com/MusgoNato" title="Perfil Github">

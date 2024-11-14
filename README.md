@@ -26,8 +26,18 @@ Siga estas etapas:
 - Baixe os arquivos do repositório.
 - Instale o gcc mais recente para compilar e executar o programa.
 - Abra o CMD na pasta aonde foi baixado o repositório e insira os seguintes comandos para compilar e executar o código:
-- LINHA PARA COMPILAÇÃO: gcc main.c -o main.exe funcoes.c -Wall -pedantic -Wextra -Werror
-- LINHA PARA EXECUÇÃO: main.exe
+
+Compilação:
+
+``` 
+gcc main.c -o main.exe funcoes.c -Wall -pedantic -Wextra -Werror
+```
+
+Execução:
+
+```
+main.exe
+```
 
 ## ℹ️ Funcionamento
 
@@ -37,12 +47,12 @@ Explicação de cada valor da linha
 - [ID] [VALOR_DO_X] [PRECISAO_DESEJADA] [EXPOENTE_DA_RAIZ]
 
 ID: 
-- SENO -> 1
-- COSSENO -> 2
-- LOGARITMO_NATURAL -> 3
-- RAIZ -> 4
-- EXPONENCIAL DE EULER -> 5
-- SENO HIPERBOLICO -> 6
+* SENO -> 1
+* COSSENO -> 2
+* LOGARITMO_NATURAL -> 3
+* RAIZ -> 4
+* EXPONENCIAL DE EULER -> 5
+* SENO HIPERBOLICO -> 6
 
 VALOR_DO_X:
 
@@ -57,11 +67,14 @@ EXPOENTE_DA_RAIZ:
 - O valor EXPOENTE_DA_RAIZ somente é passado para o cálculo da função RAIZ. Porém, caso não seja passado o valor, será atribuído 1, mantendo o valor original da função.
 
 Exemplos:
-- 1 2 3
-- 2 3 4
-- 3 4 5
-- 4 4 4 4
-- 0
+
+``` 
+1 2 3
+2 3 4
+3 4 5
+4 4 4 4
+0
+``` 
 
 Você pode inserir quantas linhas quiser no programa, já que a alocação dinâmica presente no código permite esse comportamento, então é possível o cálculo da mesma função em linhas diferentes com valores diferentes. Para encerrar as leituras das linhas, insira em uma nova linha o ID 0.
 

@@ -16,6 +16,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - Você instalou a versão mais recente da linguagem `<C>`
 - Você instalou a versão mais recente do `<GCC>`
+- Link para Download <a href="https://sourceforge.net/projects/gcc-win64/" title="Download gcc-win64">
 - Você tem uma máquina `<Windows / Linux / Mac>`.
 
 ## 🚀 Veja o Projeto
@@ -25,13 +26,10 @@ Siga estas etapas:
 - Baixe os arquivos do repositório.
 - Instale o gcc mais recente para compilar e executar o programa.
 - Abra o CMD na pasta aonde foi baixado o repositório e insira os seguintes comandos para compilar e executar o código:
-- COMPILAÇÃO: gcc main.c -o main.exe funcoes.c -Wall -pedantic -Wextra -Werror
-- EXECUÇÃO: main.exe
+- LINHA PARA COMPILAÇÃO: gcc main.c -o main.exe funcoes.c -Wall -pedantic -Wextra -Werror
+- LINHA PARA EXECUÇÃO: main.exe
 
 ## 🤝 Colaboradores
-
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
-
 <table>
     <td align="center">
       <a href="https://github.com/MusgoNato" title="Perfil Github">

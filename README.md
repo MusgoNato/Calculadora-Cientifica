@@ -90,3 +90,15 @@ Você pode inserir quantas linhas quiser no programa, já que a alocação dinâ
     </td>
   </tr>
 </table>
+
+## Referências 📚
+<table>
+    <td align="center">
+      <a href="https://www.comp.uems.br/~ricardo/PCII/" title="Link do Projeto">
+        <sub>
+          <b>A idéia e bibliotecas utilizadas no projeto foram pegas da disciplina de Programação de Computadores II do Prof Dr Ricardo Luis Lachi</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
